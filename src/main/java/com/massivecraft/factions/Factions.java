@@ -1,16 +1,5 @@
 package com.massivecraft.factions;
 
-import com.google.gson.reflect.TypeToken;
-import com.massivecraft.factions.integration.Econ;
-import com.massivecraft.factions.struct.FFlag;
-import com.massivecraft.factions.struct.FPerm;
-import com.massivecraft.factions.struct.Rel;
-import com.massivecraft.factions.util.MiscUtil;
-import com.massivecraft.factions.zcore.persist.EntityCollection;
-import com.massivecraft.factions.zcore.util.TL;
-import com.massivecraft.factions.zcore.util.TextUtil;
-import org.bukkit.ChatColor;
-
 import java.io.File;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -20,6 +9,19 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.logging.Level;
+
+import org.bukkit.ChatColor;
+
+import com.massivecraft.factions.integration.Econ;
+import com.massivecraft.factions.struct.FFlag;
+import com.massivecraft.factions.struct.FPerm;
+import com.massivecraft.factions.struct.Rel;
+import com.massivecraft.factions.util.MiscUtil;
+import com.massivecraft.factions.zcore.persist.EntityCollection;
+import com.massivecraft.factions.zcore.util.TL;
+import com.massivecraft.factions.zcore.util.TextUtil;
+
+import net.minecraft.util.com.google.common.reflect.TypeToken;
 
 public class Factions extends EntityCollection<Faction> {
     public static Factions i = new Factions();
@@ -37,7 +39,8 @@ public class Factions extends EntityCollection<Faction> {
              );
     }
 
-    @Override
+    @SuppressWarnings("serial")
+	@Override
     public Type getMapType() {
         return new TypeToken<Map<String, Faction>>() {
         }.getType();

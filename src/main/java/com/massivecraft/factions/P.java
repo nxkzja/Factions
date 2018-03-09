@@ -1,27 +1,12 @@
 package com.massivecraft.factions;
 
-import com.google.gson.GsonBuilder;
-import com.massivecraft.factions.adapters.FFlagTypeAdapter;
-import com.massivecraft.factions.adapters.FPermTypeAdapter;
-import com.massivecraft.factions.adapters.LocationTypeAdapter;
-import com.massivecraft.factions.adapters.RelTypeAdapter;
-import com.massivecraft.factions.cmd.CmdAutoHelp;
-import com.massivecraft.factions.cmd.FCmdRoot;
-import com.massivecraft.factions.integration.Econ;
-import com.massivecraft.factions.integration.EssentialsFeatures;
-import com.massivecraft.factions.integration.LWCFeatures;
-import com.massivecraft.factions.integration.Worldguard;
-import com.massivecraft.factions.integration.capi.CapiFeatures;
-import com.massivecraft.factions.integration.herochat.HerochatFeatures;
-import com.massivecraft.factions.listeners.*;
-import com.massivecraft.factions.struct.FFlag;
-import com.massivecraft.factions.struct.FPerm;
-import com.massivecraft.factions.struct.Rel;
-import com.massivecraft.factions.struct.TerritoryAccess;
-import com.massivecraft.factions.util.AutoLeaveTask;
-import com.massivecraft.factions.util.EconLandRewardTask;
-import com.massivecraft.factions.util.LazyLocation;
-import com.massivecraft.factions.zcore.MPlugin;
+import java.lang.reflect.Modifier;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.logging.Level;
+
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -30,12 +15,31 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
-import java.lang.reflect.Modifier;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.logging.Level;
+import com.massivecraft.factions.adapters.FFlagTypeAdapter;
+import com.massivecraft.factions.adapters.FPermTypeAdapter;
+import com.massivecraft.factions.adapters.LocationTypeAdapter;
+import com.massivecraft.factions.adapters.RelTypeAdapter;
+import com.massivecraft.factions.cmd.CmdAutoHelp;
+import com.massivecraft.factions.cmd.FCmdRoot;
+import com.massivecraft.factions.integration.Econ;
+import com.massivecraft.factions.integration.EssentialsFeatures;
+import com.massivecraft.factions.integration.Worldguard;
+import com.massivecraft.factions.listeners.FactionsBlockListener;
+import com.massivecraft.factions.listeners.FactionsChatListener;
+import com.massivecraft.factions.listeners.FactionsEntityListener;
+import com.massivecraft.factions.listeners.FactionsExploitListener;
+import com.massivecraft.factions.listeners.FactionsPlayerListener;
+import com.massivecraft.factions.listeners.FactionsServerListener;
+import com.massivecraft.factions.struct.FFlag;
+import com.massivecraft.factions.struct.FPerm;
+import com.massivecraft.factions.struct.Rel;
+import com.massivecraft.factions.struct.TerritoryAccess;
+import com.massivecraft.factions.util.AutoLeaveTask;
+import com.massivecraft.factions.util.EconLandRewardTask;
+import com.massivecraft.factions.util.LazyLocation;
+import com.massivecraft.factions.zcore.MPlugin;
+
+import net.minecraft.util.com.google.gson.GsonBuilder;
 
 
 public class P extends MPlugin {
@@ -105,9 +109,6 @@ public class P extends MPlugin {
 
         EssentialsFeatures.setup();
         Econ.setup();
-        CapiFeatures.setup();
-        HerochatFeatures.setup();
-        LWCFeatures.setup();
 
         if (Conf.worldGuardChecking) {
             Worldguard.init(this);

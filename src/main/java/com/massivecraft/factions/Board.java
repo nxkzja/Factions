@@ -1,19 +1,24 @@
 package com.massivecraft.factions;
 
-import com.google.gson.reflect.TypeToken;
-import com.massivecraft.factions.iface.RelationParticipator;
-import com.massivecraft.factions.integration.LWCFeatures;
-import com.massivecraft.factions.struct.TerritoryAccess;
-import com.massivecraft.factions.util.AsciiCompass;
-import com.massivecraft.factions.zcore.util.DiscUtil;
+import java.io.File;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.TreeMap;
+
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 
-import java.io.File;
-import java.lang.reflect.Type;
-import java.util.*;
-import java.util.Map.Entry;
+import com.massivecraft.factions.iface.RelationParticipator;
+import com.massivecraft.factions.struct.TerritoryAccess;
+import com.massivecraft.factions.util.AsciiCompass;
+import com.massivecraft.factions.zcore.util.DiscUtil;
+
+import net.minecraft.util.com.google.common.reflect.TypeToken;
 
 
 public class Board {
@@ -60,9 +65,6 @@ public class Board {
     }
 
     public static void removeAt(FLocation flocation) {
-        if (Conf.onUnclaimResetLwcLocks && LWCFeatures.getEnabled())
-            LWCFeatures.clearAllChests(flocation);
-
         flocationIds.remove(flocation);
     }
 
@@ -71,9 +73,6 @@ public class Board {
         while (iter.hasNext()) {
             Entry<FLocation, TerritoryAccess> entry = iter.next();
             if (entry.getValue().getHostFactionID().equals(factionId)) {
-                if (Conf.onUnclaimResetLwcLocks && LWCFeatures.getEnabled())
-                    LWCFeatures.clearAllChests(entry.getKey());
-
                 iter.remove();
             }
         }
@@ -109,9 +108,6 @@ public class Board {
         while (iter.hasNext()) {
             Entry<FLocation, TerritoryAccess> entry = iter.next();
             if (!Factions.i.exists(entry.getValue().getHostFactionID())) {
-                if (Conf.onUnclaimResetLwcLocks && LWCFeatures.getEnabled())
-                    LWCFeatures.clearAllChests(entry.getKey());
-
                 P.p.log("Board cleaner removed " + entry.getValue().getHostFactionID() + " from " + entry.getKey());
                 iter.remove();
             }

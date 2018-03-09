@@ -74,29 +74,6 @@ public class Conf {
     public static transient boolean chatTagHandledByAnotherPlugin = false; // Why do we need this? (Olof asks)
     public static String chatTagFormat = "%s" + ChatColor.WHITE; // This one is almost deprecated now right? or is it?
 
-    // Herochat
-    public static String herochatFactionName = "Faction";
-    public static String herochatFactionNick = "F";
-    public static String herochatFactionFormat = "{color}[&l{nick}&r{color} &l{faction_roleprefix}&r{color}{faction_title_pr}{sender}{color}] &f{msg}";
-    public static ChatColor herochatFactionColor = ChatColor.GREEN;
-    public static int herochatFactionDistance = 0;
-    public static boolean herochatFactionIsShortcutAllowed = false;
-    public static boolean herochatFactionCrossWorld = true;
-    public static boolean herochatFactionMuted = false;
-    public static Set<String> herochatFactionWorlds = new HashSet<String>();
-
-    public static String herochatAlliesName = "Allies";
-    public static String herochatAlliesNick = "A";
-    public static String herochatAlliesFormat = "{color}[&l{nick}&r&f {faction_relcolor}&l{faction_roleprefix}&r{faction_relcolor}{faction_tag_pr}{sender}{color}] &f{msg}";
-    public static ChatColor herochatAlliesColor = ChatColor.DARK_PURPLE;
-    public static int herochatAlliesDistance = 0;
-    public static boolean herochatAlliesIsShortcutAllowed = false;
-    public static boolean herochatAlliesCrossWorld = true;
-    public static boolean herochatAlliesMuted = false;
-    public static Set<String> herochatAlliesWorlds = new HashSet<String>();
-
-    public static String herochatAllyName = "Allies";
-
     public static boolean broadcastDescriptionChanges = false;
 
     public static double saveToFileEveryXMinutes = 30.0;
@@ -192,31 +169,7 @@ public class Conf {
 
     // TODO: Rename to monsterCreatureTypes
     public static transient Set<EntityType> monsters = EnumSet.noneOf(EntityType.class);
-
-    // Spout features
-    public static boolean spoutFactionTagsOverNames = true;  // show faction tags over names over player heads
-    public static boolean spoutFactionTitlesOverNames = true;  // whether to include player's title in that
-    public static boolean spoutHealthBarUnderNames = true;  // Show healthbar under player names.
-    public static String spoutHealthBarLeft = "{c}[";
-    public static String spoutHealthBarSolid = "|";
-    public static String spoutHealthBarBetween = "&8";
-    public static String spoutHealthBarEmpty = "|";
-    public static String spoutHealthBarRight = "{c}]";
-    public static double spoutHealthBarSolidsPerEmpty = 1d;
-    public static String spoutHealthBarColorTag = "{c}";
-    public static int spoutHealthBarWidth = 30;
-    public static Map<Double, String> spoutHealthBarColorUnderQuota = new LinkedHashMap<Double, String>();
-    public static boolean spoutCapes = true;  // Show faction capes
-    public static int spoutTerritoryDisplayPosition = 1;  // permanent territory display, instead of by chat; 0 = disabled, 1 = top left, 2 = top center, 3+ = top right
-    public static float spoutTerritoryDisplaySize = 1.0f;  // text scale (size) for territory display
-    public static boolean spoutTerritoryDisplayShowDescription = true;  // whether to show the faction description, not just the faction tag
-    public static boolean spoutTerritoryAccessShow = true;  // show occasional territory access info as well ("access granted" or "access restricted" if relevant)
-    public static boolean spoutTerritoryNoticeShow = true;  // show additional brief territory notice near center of screen, to be sure player notices transition
-    public static int spoutTerritoryNoticeTop = 40;  // how far down the screen to place the additional notice
-    public static boolean spoutTerritoryNoticeShowDescription = false;  // whether to show the faction description in the notice, not just the faction tag
-    public static float spoutTerritoryNoticeSize = 1.5f;  // text scale (size) for notice
-    public static float spoutTerritoryNoticeLeaveAfterSeconds = 2.00f;  // how many seconds before the notice goes away
-
+    
     // Economy settings
     public static boolean econEnabled = false;
     public static String econUniverseAccount = "";
@@ -337,13 +290,6 @@ public class Conf {
         monsters.add(EntityType.WITCH);
         monsters.add(EntityType.WITHER);
         monsters.add(EntityType.ZOMBIE);
-
-        spoutHealthBarColorUnderQuota.put(1.0d, "&2");
-        spoutHealthBarColorUnderQuota.put(0.8d, "&a");
-        spoutHealthBarColorUnderQuota.put(0.5d, "&e");
-        spoutHealthBarColorUnderQuota.put(0.4d, "&6");
-        spoutHealthBarColorUnderQuota.put(0.3d, "&c");
-        spoutHealthBarColorUnderQuota.put(0.2d, "&4");
     }
 
     // -------------------------------------------- //
